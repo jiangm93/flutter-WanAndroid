@@ -31,10 +31,8 @@ class _HomePageState extends State<HomePage> {
         },
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: _titleList[0]),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.newspaper), label: _titleList[1]),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person), label: _titleList[2])
+          BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: _titleList[1]),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: _titleList[2])
         ],
       ),
     );
