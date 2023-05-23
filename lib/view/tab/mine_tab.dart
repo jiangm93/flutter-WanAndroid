@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wanandroid/router/router.dart';
 
 class MineTabPage extends StatefulWidget {
   @override
@@ -8,6 +9,15 @@ class MineTabPage extends StatefulWidget {
 class _MineTabPageState extends State<MineTabPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text("我的")));
+    return Scaffold(body: Center(child:Column(
+
+      children: [
+        Text("我的"),
+        ElevatedButton(onPressed: ()=>{
+          RouteManager().navigateTo(RouteManager.loginRouter)
+          
+        }, child: Text("去登录"))
+      ],
+    )));
   }
 }

@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:wanandroid/router/router.dart';
 import 'package:wanandroid/view/home.dart';
 
 void main() {
   runApp(const MyApp());
+  //白色
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,//背景色
+      statusBarIconBrightness:Brightness.dark//字体颜色
+  ));
+
 }
 
 final RouteManager routeManager = RouteManager();
@@ -15,16 +23,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
-            useMaterial3: true),
-        initialRoute: RouteManager.initialRoute,
-        onGenerateInitialRoutes: RouteManager.onGenerateInitialRoutes,
-        routes: RouteManager.routes,
-        navigatorKey: RouteManager.navigatorKey
-        // home: TabWidget(),
-        );
+      title: 'Flutter Demo',
+      theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
+          useMaterial3: true),
+      initialRoute: RouteManager.initialRoute,
+      onGenerateInitialRoutes: RouteManager.onGenerateInitialRoutes,
+      routes: RouteManager.routes,
+      navigatorKey: RouteManager.navigatorKey,
+      // home: TabWidget(),
+    );
   }
 }
 
