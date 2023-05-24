@@ -15,6 +15,7 @@ class _RegisterPageState extends State<RegisterPage> {
         leading: BackBtn(),
         centerTitle: true,
         title: Text("注册"),
+        backgroundColor: Colors.white,
       ),
       body: Center(
         child: Column(
@@ -63,7 +64,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
             ),
-            SizedBox(height: 16),
           ],
         ),
       ),

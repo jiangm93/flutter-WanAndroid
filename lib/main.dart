@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:wanandroid/router/router.dart';
 import 'package:wanandroid/view/home.dart';
 
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
       onGenerateInitialRoutes: RouteManager.onGenerateInitialRoutes,
       routes: RouteManager.routes,
       navigatorKey: RouteManager.navigatorKey,
+      builder: EasyLoading.init(),
       // home: TabWidget(),
     );
   }
