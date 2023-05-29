@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:wanandroid/view/tab/home_tab.dart';
-import 'package:wanandroid/view/tab/information_tab.dart';
-import 'package:wanandroid/view/tab/mine_tab.dart';
+import 'package:wanandroid/views/tab/home_tab.dart';
+import 'package:wanandroid/views/tab/information_tab.dart';
+import 'package:wanandroid/views/tab/mine_tab.dart';
 
 
 class HomePage extends StatefulWidget {

@@ -1,11 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:wanandroid/net/net_util.dart';
+import 'package:wanandroid/net/http_request.dart';
 import 'package:wanandroid/router/router.dart';
 import 'package:wanandroid/utils/toast_util.dart';
-import 'package:wanandroid/widget/BackBtn.dart';
+import 'package:wanandroid/widget/back_btn.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -47,12 +46,21 @@ class _LoginPageState extends State<LoginPage> {
       // ToastUtil.showLoading();
       return;
     }
+    // var params = {
+    //   "username": username,
+    //   "password": password,
+    // };
     var params = {
-      "username": username,
-      "password": password,
+      "username": "saltfish1010",
+      "password": "jm123456",
     };
     FormData formData = FormData.fromMap(params);
-    DioHelper.postData("https://www.wanandroid.com/user/login", formData);
+    // DioHelper.postData("https://www.wanandroid.com/user/login", formData);
+
+    HttpRequest.request("https://www.wanandroid.com/user/login", data: formData,
+        onSuccess: (result) {
+      ToastUtil.showSuccess("登录成功");
+    });
   }
 
   void _changeCheck(bool? state) {
@@ -86,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
               child: TextFormField(
                 autofocus: true,
                 controller: _unameController,
-                decoration: _createInputDecoration(Icons.person,"请输入用户名"),
+                decoration: _createInputDecoration(Icons.person, "请输入用户名"),
                 style: TextStyle(fontSize: 14),
                 onChanged: (val) {
                   username = val;
@@ -103,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                 obscureText: true,
                 autofocus: true,
                 controller: _pwdController,
-                decoration: _createInputDecoration(Icons.lock,'请输入密码'),
+                decoration: _createInputDecoration(Icons.lock, '请输入密码'),
                 style: TextStyle(fontSize: 14),
                 onChanged: (val) {
                   password = val;
@@ -181,17 +189,17 @@ class _LoginPageState extends State<LoginPage> {
       )),
     );
   }
-}
 
-// 创建输入框
- InputDecoration _createInputDecoration(IconData icon,String hintText){
-  return InputDecoration(
-    icon: Icon(icon),
-    hintText: hintText,
-    border: OutlineInputBorder(),
-    contentPadding: const EdgeInsets.symmetric(
-        vertical: 4.0, horizontal: 10.0),
-    // filled: true,
-    // fillColor: Color(0xffaaaaaa)
-  );
+  // 创建输入框
+  InputDecoration _createInputDecoration(IconData icon, String hintText) {
+    return InputDecoration(
+      prefixIcon: Icon(icon),
+      hintText: hintText,
+      border: OutlineInputBorder(),
+      contentPadding:
+          const EdgeInsets.symmetric(vertical: 4.0, horizontal: 10.0),
+      // filled: true,
+      // fillColor: Color(0xffaaaaaa)
+    );
+  }
 }

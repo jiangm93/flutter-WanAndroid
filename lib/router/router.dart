@@ -1,9 +1,10 @@
 
 import 'package:flutter/material.dart';
-import 'package:wanandroid/view/home.dart';
-import 'package:wanandroid/view/login/login.dart';
-import 'package:wanandroid/view/login/register.dart';
-import 'package:wanandroid/view/splash_screen.dart';
+import 'package:wanandroid/application.dart';
+import 'package:wanandroid/views/home.dart';
+import 'package:wanandroid/views/login/login.dart';
+import 'package:wanandroid/views/login/register.dart';
+import 'package:wanandroid/views/splash_screen.dart';
 
 class RouteManager {
   static final RouteManager _singleton = RouteManager._internal();
@@ -14,7 +15,7 @@ class RouteManager {
 
   RouteManager._internal();
 
-  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  // static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   static const String initialRoute = '/';
   static const String homeRoute = '/home';
@@ -58,16 +59,16 @@ class RouteManager {
   }
 
   Future<Object?>? navigateTo(String routeName, {Object? arguments}) {
-    return navigatorKey.currentState
+    return Application.globalKey?.currentState
         ?.pushNamed(routeName, arguments: arguments);
   }
 
   Future<Object?>? navigateToReplace(String routeName, {Object? arguments}) {
-    return navigatorKey.currentState
+    return Application.globalKey?.currentState
         ?.pushReplacementNamed(routeName, arguments: arguments);
   }
 
   void navigateBack() {
-    return navigatorKey.currentState?.pop();
+    return Application.globalKey?.currentState?.pop();
   }
 }

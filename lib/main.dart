@@ -1,10 +1,41 @@
+import 'dart:async';
+
+import 'package:alice_lightweight/alice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:wanandroid/application.dart';
+import 'package:wanandroid/net/http_manager.dart';
 import 'package:wanandroid/router/router.dart';
-import 'package:wanandroid/view/home.dart';
+import 'package:wanandroid/views/home.dart';
 
 void main() {
+  /// 捕获flutter能try catch 捕获的异常
+  /// 还有一些异常是try catch 捕获不到的  用runZoned
+  FlutterError.onError = (FlutterErrorDetails errorDetails) {
+    if (Application.debug) {
+      /// 测试环境 日志直接打印子啊控制台
+      FlutterError.dumpErrorToConsole(errorDetails);
+    } else {
+      /// 在生产环境上 重定向到runZone 处理
+      Zone.current
+          .handleUncaughtError(errorDetails.exception, errorDetails.stack!);
+    }
+    reportErrorAndLog(errorDetails);
+  };
+  WidgetsFlutterBinding.ensureInitialized();
+  GlobalKey<NavigatorState> globalKey = GlobalKey<NavigatorState>();
+  Application.globalKey = globalKey;
+
+  /// dio 网络抓包工具配置
+  Alice alice = Alice(navigatorKey: globalKey);
+  Application.alice = alice;
+
+  /// 初始化网络配置
+  HttpManager.initNet();
+
+
+
   runApp(const MyApp());
   //白色
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
@@ -13,6 +44,17 @@ void main() {
       statusBarIconBrightness:Brightness.dark//字体颜色
   ));
 
+}
+
+void reportErrorAndLog(FlutterErrorDetails errorDetails) {
+  /// 错误日志上报 服务器
+}
+
+/// 构建错误信息
+FlutterErrorDetails makeDetails(Object obj, StackTrace stack) {
+  FlutterErrorDetails details =
+  FlutterErrorDetails(stack: stack, exception: obj);
+  return details;
 }
 
 final RouteManager routeManager = RouteManager();
@@ -31,7 +73,7 @@ class MyApp extends StatelessWidget {
       initialRoute: RouteManager.initialRoute,
       onGenerateInitialRoutes: RouteManager.onGenerateInitialRoutes,
       routes: RouteManager.routes,
-      navigatorKey: RouteManager.navigatorKey,
+      navigatorKey: Application.globalKey,
       builder: EasyLoading.init(),
       // home: TabWidget(),
     );

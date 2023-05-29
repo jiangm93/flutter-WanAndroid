@@ -38,9 +38,11 @@ dependencies:
   #网络请求
   dio: ^5.1.2
   #toast弹窗
-  fluttertoast: ^8.2.1
+#  fluttertoast: ^8.2.1
   #弹窗
   flutter_easyloading: ^3.0.5
+  #网络请求拦截器
+  alice_lightweight: ^3.4.0
 
 
 dev_dependencies:
