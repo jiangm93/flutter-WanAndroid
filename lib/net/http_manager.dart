@@ -3,11 +3,12 @@
 
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
+import 'package:wanandroid/api/api.dart';
 import 'package:wanandroid/application.dart';
 import 'package:wanandroid/net/custom_interceptors.dart';
 import 'package:wanandroid/net/log_interceptors.dart';
 
-const String BASE_URL = 'https://www.wanandroid.com';
+ const String BASE_URL = Api.BASE_URL;
 class HttpConfig{
   static const baseUrl = BASE_URL;
   static const timeout = 5000;

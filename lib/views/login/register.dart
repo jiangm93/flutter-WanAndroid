@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:wanandroid/api/api.dart';
 import 'package:wanandroid/router/router.dart';
 import 'package:wanandroid/utils/toast_util.dart';
 import 'package:wanandroid/widget/back_btn.dart';
+
+import '../../net/http_request.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -14,8 +17,9 @@ class _RegisterPageState extends State<RegisterPage> {
 
 
   bool isChecked = false;
-  String? username = "saltfish1010";
-  String? password = "jm123456";
+  String? username = "";
+  String? password = "";
+  String? repassword = "";
 
   TextEditingController _unameController = TextEditingController();
   TextEditingController _pwdController = TextEditingController();
@@ -34,10 +38,14 @@ class _RegisterPageState extends State<RegisterPage> {
     }
     var params = {
       "username": username,
-      "password": password,
+      "username": username,
+      "repassword": repassword,
     };
-    // FormData formData = FormData.fromMap(params);
-    // DioHelper.postData("https://www.wanandroid.com/user/login", formData);
+    HttpRequest.request(Api.REGISTER,isShowLoading: true, data: params,
+        onSuccess: (result) {
+          ToastUtil.showSuccess("注册成功");
+
+        });
   }
 
   void _changeCheck(bool? state) {
@@ -108,7 +116,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     decoration: _createInputDecoration(Icons.lock,'请输入确认密码'),
                     style: TextStyle(fontSize: 14),
                     onChanged: (val) {
-                      password = val;
+                      repassword = val;
                     },
                     validator: (v) {
                       return v!.trim().length > 0 ? null : '确认密码不能为空';

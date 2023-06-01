@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:wanandroid/api/api.dart';
 import 'package:wanandroid/net/http_request.dart';
 import 'package:wanandroid/router/router.dart';
 import 'package:wanandroid/utils/toast_util.dart';
@@ -54,12 +55,13 @@ class _LoginPageState extends State<LoginPage> {
       "username": "saltfish1010",
       "password": "jm123456",
     };
-    FormData formData = FormData.fromMap(params);
+    // FormData formData = FormData.fromMap(params);
     // DioHelper.postData("https://www.wanandroid.com/user/login", formData);
 
-    HttpRequest.request("https://www.wanandroid.com/user/login", data: formData,
+    HttpRequest.request(Api.LOGIN,isShowLoading: true, data: params,
         onSuccess: (result) {
       ToastUtil.showSuccess("登录成功");
+
     });
   }
 

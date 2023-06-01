@@ -4,6 +4,7 @@ import 'package:alice_lightweight/alice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:wanandroid/application.dart';
 import 'package:wanandroid/net/http_manager.dart';
 import 'package:wanandroid/router/router.dart';
@@ -65,18 +66,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
-          useMaterial3: true),
-      initialRoute: RouteManager.initialRoute,
-      onGenerateInitialRoutes: RouteManager.onGenerateInitialRoutes,
-      routes: RouteManager.routes,
-      navigatorKey: Application.globalKey,
-      builder: EasyLoading.init(),
-      // home: TabWidget(),
+    return KeyboardDismissOnTap(
+      child:  MaterialApp(
+        title: '玩Android',
+        theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
+            useMaterial3: true),
+        initialRoute: RouteManager.initialRoute,
+        onGenerateInitialRoutes: RouteManager.onGenerateInitialRoutes,
+        routes: RouteManager.routes,
+        navigatorKey: Application.globalKey,
+        builder: EasyLoading.init(),
+        // home: TabWidget(),
+      ),
     );
+
   }
 }
 

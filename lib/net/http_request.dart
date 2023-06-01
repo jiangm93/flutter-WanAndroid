@@ -12,8 +12,12 @@ class HttpRequest {
         var data,
         var queryParameters,
         String contentType = Headers.formUrlEncodedContentType,
-        bool isShowError = true, Function(ResultData)? onSuccess, Function? onFail}) async {
+        bool isShowError = true,bool isShowLoading = false,Function(ResultData)? onSuccess, Function? onFail}) async {
     try {
+      if(isShowLoading){
+        ToastUtil.showLoading(state:"请稍等...");
+      }
+
       var response = await HttpManager.dio?.request(path,
           data: data,
           queryParameters: queryParameters,
@@ -21,6 +25,10 @@ class HttpRequest {
               method: method,
               contentType: contentType,
               responseType: ResponseType.plain));
+      if(isShowLoading){
+        ToastUtil.dismiss();
+      }
+
       Map<String, dynamic> dataMap = {};
       if (response?.statusCode == 200) {
         /// http 请求成功

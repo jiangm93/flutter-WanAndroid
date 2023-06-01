@@ -43,6 +43,8 @@ dependencies:
   flutter_easyloading: ^3.0.5
   #网络请求拦截器
   alice_lightweight: ^3.4.0
+  #键盘处理
+  flutter_keyboard_visibility: ^5.4.1
 
 
 dev_dependencies:
