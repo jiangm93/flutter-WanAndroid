@@ -70,6 +70,8 @@ class MyApp extends StatelessWidget {
       child:  MaterialApp(
         title: '玩Android',
         theme: ThemeData(
+          primaryColor: Colors.indigoAccent,
+            primarySwatch: Colors.blue,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
             useMaterial3: true),
         initialRoute: RouteManager.initialRoute,

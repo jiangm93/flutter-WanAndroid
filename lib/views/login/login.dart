@@ -61,6 +61,7 @@ class _LoginPageState extends State<LoginPage> {
     HttpRequest.request(Api.LOGIN,isShowLoading: true, data: params,
         onSuccess: (result) {
       ToastUtil.showSuccess("登录成功");
+      RouteManager().navigateBack();
 
     });
   }

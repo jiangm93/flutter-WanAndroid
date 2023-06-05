@@ -12,7 +12,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   void initState() {
     super.initState();
     Timer(Duration(seconds: 2), () {
-      RouteManager().navigateTo(RouteManager.homeRoute);
+      RouteManager().navigateToReplace(RouteManager.homeRoute);
     });
   }
 
