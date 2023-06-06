@@ -5,6 +5,7 @@ import 'package:wanandroid/api/api.dart';
 import 'package:wanandroid/net/http_request.dart';
 import 'package:wanandroid/router/router.dart';
 import 'package:wanandroid/utils/toast_util.dart';
+import 'package:wanandroid/widget/appbar.dart';
 import 'package:wanandroid/widget/back_btn.dart';
 
 class LoginPage extends StatefulWidget {
@@ -75,12 +76,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: BackBtn(),
-        centerTitle: true,
-        title: Text("欢迎登录"),
-        backgroundColor: Colors.white,
-      ),
+      appBar:  appBar("登录",isShowBack:true),
       body: Center(
           child: Form(
         key: _formKey,

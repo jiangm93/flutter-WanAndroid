@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:wanandroid/router/router.dart';
 import 'package:wanandroid/utils/hex_color.dart';
+import 'package:wanandroid/utils/toast_util.dart';
+import 'package:wanandroid/widget/appbar.dart';
 
 class MineTabPage extends StatefulWidget {
   @override
@@ -18,10 +20,7 @@ class _MineTabPageState extends State<MineTabPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: HexColor("#EEEEEE"),
-        appBar: AppBar(
-          title: Text("我的"),
-          centerTitle: true,
-        ),
+        appBar: appBar("个人中心"),
         body: Center(
             child: Column(
           children: [
@@ -138,7 +137,7 @@ class _MineTabPageState extends State<MineTabPage> {
               ),
             ),
             SizedBox(
-              height: 4,
+              height: 1,
             ),
             GestureDetector(
               onTap: () {},

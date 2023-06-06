@@ -1,6 +1,7 @@
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class ToastUtil {
+
   static void showToast(String msg) {
     EasyLoading.showToast(msg);
   }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:wanandroid/api/api.dart';
 import 'package:wanandroid/router/router.dart';
 import 'package:wanandroid/utils/toast_util.dart';
+import 'package:wanandroid/widget/appbar.dart';
 import 'package:wanandroid/widget/back_btn.dart';
 
 import '../../net/http_request.dart';
@@ -57,12 +58,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: BackBtn(),
-        centerTitle: true,
-        title: Text("注册"),
-        backgroundColor: Colors.white,
-      ),
+      appBar:  appBar("注冊",isShowBack:true),
       body: Center(
           child: Form(
             key: _formKey,
