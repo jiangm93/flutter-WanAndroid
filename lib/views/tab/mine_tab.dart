@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wanandroid/resource/app_colors.dart';
 import 'package:wanandroid/router/router.dart';
 import 'package:wanandroid/utils/hex_color.dart';
 import 'package:wanandroid/utils/toast_util.dart';
@@ -27,7 +28,7 @@ class _MineTabPageState extends State<MineTabPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: HexColor("#EEEEEE"),
+        backgroundColor: ThemeColors.colorF6F6F8,
         appBar: appBar("个人中心"),
         body: Center(
             child: Column(
