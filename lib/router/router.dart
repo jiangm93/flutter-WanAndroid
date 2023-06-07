@@ -4,6 +4,7 @@ import 'package:wanandroid/application.dart';
 import 'package:wanandroid/views/home.dart';
 import 'package:wanandroid/views/login/login.dart';
 import 'package:wanandroid/views/login/register.dart';
+import 'package:wanandroid/views/setting/setting.dart';
 import 'package:wanandroid/views/splash_screen.dart';
 
 class RouteManager {
@@ -30,7 +31,7 @@ class RouteManager {
     loginRouter: (context) => LoginPage(),
     registerRouter: (context) => RegisterPage(),
     detailRoute: (context) => HomePage(),
-    settingsRoute: (context) => HomePage(),
+    settingsRoute: (context) => SettingPage(),
   };
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -46,7 +47,7 @@ class RouteManager {
       case detailRoute:
         return MaterialPageRoute(builder: (context) => HomePage());
       case settingsRoute:
-        return MaterialPageRoute(builder: (context) => HomePage());
+        return MaterialPageRoute(builder: (context) => SettingPage());
       default:
         return MaterialPageRoute(builder: (context) => HomePage());
     }

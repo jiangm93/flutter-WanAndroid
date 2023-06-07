@@ -16,6 +16,14 @@ class _MineTabPageState extends State<MineTabPage> {
   // child: Image.network('http://pics5.baidu.com/feed/622762d0f703918f751ba5e950ce8d915beec4c1.jpeg?token=ed435fd18c71cf7ca7a011acb70460f7',width: 100,height: 100,),
   // borderRadius:BorderRadius.circular(20)
 
+
+
+  _goSetting(){
+    RouteManager().navigateTo(RouteManager.settingsRoute);
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -140,7 +148,9 @@ class _MineTabPageState extends State<MineTabPage> {
               height: 1,
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                _goSetting();
+              },
               child: Container(
                 padding: const EdgeInsets.all(10),
                 height: 54,
@@ -174,11 +184,6 @@ class _MineTabPageState extends State<MineTabPage> {
                 ),
               ),
             ),
-            Text("我的"),
-            ElevatedButton(
-                onPressed: () =>
-                    {RouteManager().navigateTo(RouteManager.loginRouter)},
-                child: Text("去登录"))
           ],
         )));
   }

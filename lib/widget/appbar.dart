@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 appBar(String title,
     {bool isShowBack = false,
     String? rightTitle,
+    Color? backgroundColor,
     VoidCallback? rightButtonClick}) {
   return AppBar(
     centerTitle: true,
@@ -13,6 +14,7 @@ appBar(String title,
       title,
       style: TextStyle(fontSize: 18),
     ),
+    backgroundColor: backgroundColor,
     // 标题
     actions: [
       if (rightTitle != null)
