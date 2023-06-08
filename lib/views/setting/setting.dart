@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wanandroid/resource/app_colors.dart';
+import 'package:wanandroid/router/router.dart';
 import 'package:wanandroid/widget/appbar.dart';
 
 class SettingPage extends StatelessWidget {
@@ -13,7 +14,9 @@ class SettingPage extends StatelessWidget {
           children: [
             SizedBox(height: 10),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                RouteManager().navigateTo(RouteManager.noFoundRoute);
+              },
               child: Container(
                 padding: const EdgeInsets.all(10),
                 height: 54,
@@ -58,7 +61,9 @@ class SettingPage extends StatelessWidget {
             ),
             Divider(height: 1,color: ThemeColors.colorF6F6F8,),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                RouteManager().navigateTo(RouteManager.aboutUsRoute);
+              },
               child: Container(
                 padding: const EdgeInsets.all(10),
                 height: 54,

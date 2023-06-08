@@ -1,9 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:wanandroid/application.dart';
 import 'package:wanandroid/views/home.dart';
 import 'package:wanandroid/views/login/login.dart';
 import 'package:wanandroid/views/login/register.dart';
+import 'package:wanandroid/views/no_found_page.dart';
+import 'package:wanandroid/views/setting/about_us.dart';
 import 'package:wanandroid/views/setting/setting.dart';
 import 'package:wanandroid/views/splash_screen.dart';
 
@@ -24,6 +25,8 @@ class RouteManager {
   static const String registerRouter = '/login/register';
   static const String detailRoute = '/detail';
   static const String settingsRoute = '/settings';
+  static const String aboutUsRoute = '/settings/about';
+  static const String noFoundRoute = '/nofound';
 
   static Map<String, WidgetBuilder> routes = {
     initialRoute: (context) => SplashScreenPage(),
@@ -32,6 +35,8 @@ class RouteManager {
     registerRouter: (context) => RegisterPage(),
     detailRoute: (context) => HomePage(),
     settingsRoute: (context) => SettingPage(),
+    aboutUsRoute: (context) => AboutUsPage(),
+    noFoundRoute: (context) => NoFoundPage(),
   };
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -48,8 +53,10 @@ class RouteManager {
         return MaterialPageRoute(builder: (context) => HomePage());
       case settingsRoute:
         return MaterialPageRoute(builder: (context) => SettingPage());
+      case aboutUsRoute:
+        return MaterialPageRoute(builder: (context) => AboutUsPage());
       default:
-        return MaterialPageRoute(builder: (context) => HomePage());
+        return MaterialPageRoute(builder: (context) => NoFoundPage());
     }
   }
 
