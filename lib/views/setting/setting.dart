@@ -12,10 +12,14 @@ class SettingPage extends StatelessWidget {
       body: Container(
         child: Column(
           children: [
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             GestureDetector(
               onTap: () {
-                RouteManager().navigateTo(RouteManager.noFoundRoute);
+                final obj = {
+                  'url':"https://app.0359tv.com/agreement/privacy/policy.html"
+                };
+                // Navigator.of(context).pushNamed(RouteManager.webRoute,arguments: obj);
+                RouteManager().navigateTo(RouteManager.webRoute,arguments: obj);
               },
               child: Container(
                 padding: const EdgeInsets.all(10),
@@ -38,7 +42,9 @@ class SettingPage extends StatelessWidget {
             ),
             Divider(height: 1,color: ThemeColors.colorF6F6F8,),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                RouteManager().navigateTo(RouteManager.loginRouter);
+              },
               child: Container(
                 padding: const EdgeInsets.all(10),
                 height: 54,

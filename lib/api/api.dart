@@ -22,6 +22,8 @@ class Api {
   static const String COLLECT_IN_ARTICLE =  "/lg/collect/";
   static const String COLLECT_OUT_ARTICLE =  "/lg/collect/add/json";
   static const String UNCOLLECT_ARTICLE =  "/lg/uncollect_originId/";
+  static const String USER_INFO =  "/user/lg/userinfo/json";
+
 
   static const String DEFAULT_PROJECT_IMG =
       "/wanandroid.com/resources/image/pc/default_project_img.jpg";

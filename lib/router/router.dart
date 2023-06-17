@@ -7,6 +7,7 @@ import 'package:wanandroid/views/no_found_page.dart';
 import 'package:wanandroid/views/setting/about_us.dart';
 import 'package:wanandroid/views/setting/setting.dart';
 import 'package:wanandroid/views/splash_screen.dart';
+import 'package:wanandroid/views/web/web_page.dart';
 
 class RouteManager {
   static final RouteManager _singleton = RouteManager._internal();
@@ -20,44 +21,56 @@ class RouteManager {
   // static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   static const String initialRoute = '/';
+  static const String noFoundRoute = '/nofound';
   static const String homeRoute = '/home';
   static const String loginRouter = '/login';
   static const String registerRouter = '/login/register';
   static const String detailRoute = '/detail';
   static const String settingsRoute = '/settings';
   static const String aboutUsRoute = '/settings/about';
-  static const String noFoundRoute = '/nofound';
+  static const String webRoute = '/web';
 
   static Map<String, WidgetBuilder> routes = {
-    initialRoute: (context) => SplashScreenPage(),
-    homeRoute: (context) => HomePage(),
-    loginRouter: (context) => LoginPage(),
-    registerRouter: (context) => RegisterPage(),
-    detailRoute: (context) => HomePage(),
-    settingsRoute: (context) => SettingPage(),
-    aboutUsRoute: (context) => AboutUsPage(),
-    noFoundRoute: (context) => NoFoundPage(),
+    initialRoute: (context, {arguments}) => SplashScreenPage(),
+    noFoundRoute: (context, {arguments}) => NoFoundPage(),
+    homeRoute: (context, {arguments}) => HomePage(),
+    loginRouter: (context, {arguments}) => LoginPage(),
+    registerRouter: (context, {arguments}) => RegisterPage(),
+    detailRoute: (context, {arguments}) => HomePage(),
+    settingsRoute: (context, {arguments}) => SettingPage(),
+    aboutUsRoute: (context, {arguments}) => AboutUsPage(),
+    webRoute: (context, {arguments}) => WebViewPage(arguments: arguments),
   };
 
-  static Route<dynamic> onGenerateRoute(RouteSettings settings) {
-    switch (settings.name) {
-      case initialRoute:
-        return MaterialPageRoute(builder: (context) => SplashScreenPage());
-      case homeRoute:
-        return MaterialPageRoute(builder: (context) => HomePage());
-      case loginRouter:
-        return MaterialPageRoute(builder: (context) => LoginPage());
-      case registerRouter:
-        return MaterialPageRoute(builder: (context) => RegisterPage());
-      case detailRoute:
-        return MaterialPageRoute(builder: (context) => HomePage());
-      case settingsRoute:
-        return MaterialPageRoute(builder: (context) => SettingPage());
-      case aboutUsRoute:
-        return MaterialPageRoute(builder: (context) => AboutUsPage());
-      default:
-        return MaterialPageRoute(builder: (context) => NoFoundPage());
+  static Route<T> onGenerateRoute<T extends Object>(RouteSettings settings) {
+    final String? name = settings.name;
+    final Function pageContentBuilder = routes[name] as Function;
+    print('------>路由名字:$name    ----->路由参数：${settings.arguments}');
+    if (pageContentBuilder != null) {
+      if (settings.arguments != null) {
+        return MaterialPageRoute<T>(
+            settings: settings,
+            builder: (context) =>
+                pageContentBuilder(context, arguments: settings.arguments));
+      } else {
+        return MaterialPageRoute<T>(
+            settings: settings,
+            builder: (context) => pageContentBuilder(context));
+      }
     }
+    return MaterialPageRoute<T>(
+        settings: settings,
+        builder: (context) =>
+        routes[noFoundRoute]!(context));
+  }
+
+  static Route<T> onUnknownRoute<T extends Object>(RouteSettings settings) {
+    return MaterialPageRoute<T>(
+      settings: settings,
+      builder: (context) {
+        return routes[noFoundRoute]!(context);
+      },
+    );
   }
 
   static List<Route<dynamic>> onGenerateInitialRoutes(String initialRouteName) {

@@ -24,4 +24,4 @@ class NoFoundPage extends StatelessWidget{
    );
   }
   
-}
+} 

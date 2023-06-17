@@ -54,14 +54,15 @@ class _LoginPageState extends State<LoginPage> {
     // };
     var params = {
       "username": "saltfish1010",
-      "password": "jm123456",
+      "password": "jm654321",
     };
     // FormData formData = FormData.fromMap(params);
     // DioHelper.postData("https://www.wanandroid.com/user/login", formData);
 
-    HttpRequest.request(Api.LOGIN,isShowLoading: true, data: params,
+    HttpRequest.request<Object>(Api.LOGIN,isShowLoading: true, data: params,
         onSuccess: (result) {
       ToastUtil.showSuccess("登录成功");
+      print(result);
       RouteManager().navigateBack();
 
     });

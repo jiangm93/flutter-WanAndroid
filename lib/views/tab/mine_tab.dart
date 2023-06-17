@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:wanandroid/api/api.dart';
+import 'package:wanandroid/net/http_request.dart';
 import 'package:wanandroid/resource/app_colors.dart';
 import 'package:wanandroid/router/router.dart';
 import 'package:wanandroid/utils/hex_color.dart';
@@ -21,6 +23,24 @@ class _MineTabPageState extends State<MineTabPage> {
 
   _goSetting(){
     RouteManager().navigateTo(RouteManager.settingsRoute);
+  }
+
+  _getUserInfo(){
+    HttpRequest.request(Api.USER_INFO,isShowLoading: true,
+        onSuccess: (result) {
+
+        },
+      onFail:(code,message){
+      print(message);
+      }
+        );
+
+  }
+
+  @override
+  void initState() {
+    // _getUserInfo();
+    super.initState();
   }
 
 

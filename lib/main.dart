@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:alice_lightweight/alice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -29,21 +28,22 @@ void main() {
   Application.globalKey = globalKey;
 
   /// dio 网络抓包工具配置
-  Alice alice = Alice(navigatorKey: globalKey);
-  Application.alice = alice;
+  // Alice alice = Alice(navigatorKey: globalKey);
+  // Application.alice = alice;
 
   /// 初始化网络配置
   HttpManager.initNet();
 
-
-
-  runApp(const MyApp());
   //白色
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,//背景色
       statusBarIconBrightness:Brightness.dark//字体颜色
   ));
+
+
+  runApp(const MyApp());
+
 
 }
 
@@ -76,7 +76,9 @@ class MyApp extends StatelessWidget {
             useMaterial3: true),
         initialRoute: RouteManager.initialRoute,
         onGenerateInitialRoutes: RouteManager.onGenerateInitialRoutes,
-        routes: RouteManager.routes,
+        // routes: RouteManager.routes,//如果routes为空才会走onGenerateRoute
+        onGenerateRoute: (settings)=>RouteManager.onGenerateRoute(settings),
+        onUnknownRoute: (settings)=>RouteManager.onUnknownRoute(settings),
         navigatorKey: Application.globalKey,
         builder: EasyLoading.init(),
         // home: TabWidget(),
@@ -119,54 +121,6 @@ class _TabWidgetState extends State<TabWidget> {
               icon: Icon(Icons.person), label: _titleList[2])
         ],
       ),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      //   // title: Text(widget.title),
-      // ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
